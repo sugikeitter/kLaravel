@@ -13,7 +13,7 @@
   <p>{{ $message }}</p>
   <form method="post" action="/myuser">
     <input type="submit" value="registration">
-    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <table>
       <tr><th>ID</th><th>NAME</th><th>MAIL</th><th>AGE</th></tr>
       <tr>

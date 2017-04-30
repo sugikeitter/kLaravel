@@ -13,7 +13,7 @@
   <p>{{ $message }}</p>
   <form method="post" action="/myuser/{{ $data->id }}">
     <input type="hidden" name="_method" value="put">
-    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="submit" value="update">
     <table>
       <tr><th>ID</th><th>NAME</th><th>MAIL</th><th>AGE</th></tr>
@@ -27,7 +27,7 @@
   </form>
   <form method="post" action="/myuser/{{ $data->id }}">
     <input type="hidden" name="_method" value="delete">
-    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="submit" value="delete">
   </form>
   <p>{{ $json_data }}</p>
