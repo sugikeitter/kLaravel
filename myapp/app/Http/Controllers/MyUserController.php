@@ -58,6 +58,7 @@ class MyUserController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -82,7 +83,16 @@ class MyUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateUser = MyUser::find($id);
+        $updateUser->name = $request->input('name');
+        $updateUser->mail = $request->input('mail');
+        $updateUser->age = $request->input('age');
+        $updateUser->save();
+
+        $message = "SUCCESS UPDATE ID: $id";
+        $data = MyUser::all();
+
+        return $this->viewMyUser($message, $data);
     }
 
     /**
