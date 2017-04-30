@@ -58,8 +58,8 @@ class MyUserController extends Controller
      */
     public function show($id)
     {
-        $message = '';
-        $selectedUser = MyUser::where('id', $id)->get();
+        $message = "SELECTED ID: $id";
+        $selectedUser = MyUser::find($id);
         return $this->viewMyUserEdit($message, $selectedUser);
     }
 
