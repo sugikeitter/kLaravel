@@ -103,7 +103,11 @@ class MyUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        MyUser::destroy($id);
+        $message = "SUCCESS DELETE ID: $id";
+        $data = MyUser::all();
+
+        return $this->viewMyUser($message, $data);
     }
 
     private function viewMyUser($message, $data)

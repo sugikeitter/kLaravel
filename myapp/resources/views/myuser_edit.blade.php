@@ -25,5 +25,10 @@
       </tr>
     </table>
   </form>
+  <form method="post" action="/myuser/{{ $data->id }}">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+    <input type="submit" value="delete">
+  </form>
   <p>{{ $json_data }}</p>
 </body>
