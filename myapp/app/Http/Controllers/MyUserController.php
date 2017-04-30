@@ -58,7 +58,9 @@ class MyUserController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = '';
+        $selectedUser = MyUser::where('id', $id)->get();
+        return $this->viewMyUserEdit($message, $selectedUser);
     }
 
     /**
@@ -98,6 +100,16 @@ class MyUserController extends Controller
     private function viewMyUser($message, $data)
     {
         return view('myuser'
+                    ,['message' => $message
+                       ,'data' => $data
+                       ,'json_data' => json_encode($data)
+                    ]
+                   );
+    }
+
+    private function viewMyUserEdit($message, $data)
+    {
+        return view('myuser_edit'
                     ,['message' => $message
                        ,'data' => $data
                        ,'json_data' => json_encode($data)
