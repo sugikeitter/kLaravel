@@ -30,11 +30,18 @@ $ mv composer.phar /usr/local/bin/composer
 
 ### laravelインストール(https://laravel.com/docs/5.4)
 # 必要なパッケージのインストール
-$ yum install zip unzip git
+$ yum install zip unzip git vim
+
+# vim 使いやすい設定
+$ mv /usr/bin/vi /usr/bin/vi-small
+$ ln -s /usr/bin/vim /usr/bin/vi
+
+# gitのカラー表示
+$ git config --global color.ui true
 
 $ composer global require "laravel/installer"
 
-$ vi ~/.bash_profile
+$ vim ~/.bash_profile
 ================
 PATH=$PATH:$HOME/bin:$HOME/.composer/vendor/bin
 ================
@@ -51,7 +58,15 @@ $ yum install zlib-devel gcc make
 # Cent OS の公式ではlibzip-0.11がないための対応(http://mimirswell.cliptrash.com/blog-204)
 $ pecl -d preferred_state=stable install -a zip-1.13.5
 
-$ vi /etc/php.ini
+$ vim /etc/php.ini
+================
+; default extension directory.
++++ extension=zip.so
+================
+
+$ mkdir -p /home/php
+
+$ cd /home/php
 
 $ laravel new myapp
 
@@ -126,8 +141,8 @@ sqlite> INSERT INTO my_user (name, mail, age) VALUES ('fgh', 'yj_kesugimo@yahoo.
 sqlite> INSERT INTO my_user (name, mail, age) VALUES ('ijk', 'yj_kesugimo@yahoo.co.jp', 33);
 
 # sqlite利用設定(http://qiita.com/shosho/items/c1561a51bdefea202b16)
-$ vi .env
-$ vi config/database.php
+$ vim .env
+$ vim config/database.php
 
 # sqliteへの書き込み権限(http://qiita.com/juniskw/items/7f948843d571ca2dd0f4)
 $ chmod 666 database/database.sqlite
