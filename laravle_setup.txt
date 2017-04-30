@@ -1,0 +1,134 @@
+###################
+### laravel開発 ###
+###################
+
+### Docker環境作成
+$ docker run --privileged --name laravel-tutorial -d -p 8000:8000 centos /sbin/init
+
+$ docker exec -it laravel-tutorial /bin/bash
+
+
+### CentOS7にPHP7をyumでインストールする(http://qiita.com/inakadegaebal/items/b57cf10339978d638305)
+$ yum install epel-release
+
+$ rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+
+$ yum install --enablerepo=remi,remi-php71 php php-devel php-mbstring php-pdo php-gd
+
+
+### composerインストール(https://getcomposer.org/doc/00-intro.md)
+## ダウンロード(https://getcomposer.org/download/)
+$ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+
+$ php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+
+$ php composer-setup.php
+
+$ php -r "unlink('composer-setup.php');"
+
+$ mv composer.phar /usr/local/bin/composer
+
+### laravelインストール(https://laravel.com/docs/5.4)
+# 必要なパッケージのインストール
+$ yum install zip unzip git
+
+$ composer global require "laravel/installer"
+
+$ vi .bash_profile
+================
+PATH=$PATH:$HOME/bin:$HOME/.composer/vendor/bin
+================
+
+$ source .bash_profile
+
+# "laravel new" する時に出る "The Zip PHP extension is not installed." エラーを解消する(http://takayukii.me/post/20160406772)
+$ yum install libxslt
+
+$ yum install php-pear --disablerepo=* --enablerepo=remi,remi-php71
+
+$ yum install zlib-devel gcc make
+
+# Cent OS の公式ではlibzip-0.11がないための対応(http://mimirswell.cliptrash.com/blog-204)
+$ pecl -d preferred_state=stable install -a zip-1.13.5
+
+$ vi /etc/php.ini
+
+$ laravel new myapp
+
+$ cd myapp
+
+$ chmod 777 -R storage bootstrap/cache/
+
+
+### apacheの設定 ###
+$ git diff
+diff --git a/httpd.conf b/httpd.conf
+index a7af0dc..02a3388 100644
+--- a/httpd.conf
++++ b/httpd.conf
+@@ -39,7 +39,7 @@ ServerRoot "/etc/httpd"
+ # prevent Apache from glomming onto all bound IP addresses.
+ #
+ #Listen 12.34.56.78:80
+-Listen 80
++Listen 8000
+
+ #
+ # Dynamic Shared Object (DSO) Support
+@@ -54,6 +54,7 @@ Listen 80
+ # LoadModule foo_module modules/mod_foo.so
+ #
+ Include conf.modules.d/*.conf
++LoadModule rewrite_module modules/mod_rewrite.so
+
+ #
+ # If you wish httpd to run as a different user or group, you must run
+@@ -116,7 +117,7 @@ ServerAdmin root@localhost
+ # documents. By default, all requests are taken from this directory, but
+ # symbolic links and aliases may be used to point to other locations.
+ #
+-DocumentRoot "/var/www/html"
++DocumentRoot "/home/php/laravel/myapp/public"
+
+ #
+ # Relax access to content within /var/www.
+@@ -128,7 +129,7 @@ DocumentRoot "/var/www/html"
+ </Directory>
+
+ # Further relax access to the default document root:
+-<Directory "/var/www/html">
++<Directory "/home/php/laravel/myapp/public">
+     #
+     # Possible values for the Options directive are "None", "All",
+     # or any combination of:
+@@ -148,7 +149,7 @@ DocumentRoot "/var/www/html"
+     # It can be "All", "None", or any combination of the keywords:
+     #   Options FileInfo AuthConfig Limit
+     #
+-    AllowOverride None
++    AllowOverride All
+
+     #
+     # Controls who can get stuff from this server.
+
+
+
+
+### SQLiteのセットアップ ###
+参考(http://qiita.com/d-yokoi/items/be7cf4622c66cdcc04cb)
+$ sqlite3 database/database.sqlite
+
+sqlite> CREATE TABLE hello_user (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, mail TEXT, age INTEGER, created_at TIMESTAMP, updated_at TIMESTAMP);
+sqlite> INSERT INTO hello_user (name) VALUES ('abc');
+sqlite> UPDATE hello_user SET mail='yj_kesugimo@yahoo.co.jp', age=30 WHERE name='abc';
+sqlite> INSERT INTO hello_user (name, mail, age) VALUES ('cde', 'yj_kesugimo@yahoo.co.jp', 31);
+sqlite> INSERT INTO hello_user (name, mail, age) VALUES ('fgh', 'yj_kesugimo@yahoo.co.jp', 32);
+sqlite> INSERT INTO hello_user (name, mail, age) VALUES ('ijk', 'yj_kesugimo@yahoo.co.jp', 33);
+
+# sqlite利用設定(http://qiita.com/shosho/items/c1561a51bdefea202b16)
+$ vi .env
+$ vi config/database.php
+
+# sqliteへの書き込み権限(http://qiita.com/juniskw/items/7f948843d571ca2dd0f4)
+$ chmod 666 database/database.sqlite
+$ chmod 777 database
