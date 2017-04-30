@@ -118,12 +118,12 @@ index a7af0dc..02a3388 100644
 参考(http://qiita.com/d-yokoi/items/be7cf4622c66cdcc04cb)
 $ sqlite3 database/database.sqlite
 
-sqlite> CREATE TABLE hello_user (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, mail TEXT, age INTEGER, created_at TIMESTAMP, updated_at TIMESTAMP);
-sqlite> INSERT INTO hello_user (name) VALUES ('abc');
-sqlite> UPDATE hello_user SET mail='yj_kesugimo@yahoo.co.jp', age=30 WHERE name='abc';
-sqlite> INSERT INTO hello_user (name, mail, age) VALUES ('cde', 'yj_kesugimo@yahoo.co.jp', 31);
-sqlite> INSERT INTO hello_user (name, mail, age) VALUES ('fgh', 'yj_kesugimo@yahoo.co.jp', 32);
-sqlite> INSERT INTO hello_user (name, mail, age) VALUES ('ijk', 'yj_kesugimo@yahoo.co.jp', 33);
+sqlite> CREATE TABLE my_user (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, mail TEXT, age INTEGER, created_at TIMESTAMP, updated_at TIMESTAMP);
+sqlite> INSERT INTO my_user (name) VALUES ('abc');
+sqlite> UPDATE my_user SET mail='yj_kesugimo@yahoo.co.jp', age=30 WHERE name='abc';
+sqlite> INSERT INTO my_user (name, mail, age) VALUES ('cde', 'yj_kesugimo@yahoo.co.jp', 31);
+sqlite> INSERT INTO my_user (name, mail, age) VALUES ('fgh', 'yj_kesugimo@yahoo.co.jp', 32);
+sqlite> INSERT INTO my_user (name, mail, age) VALUES ('ijk', 'yj_kesugimo@yahoo.co.jp', 33);
 
 # sqlite利用設定(http://qiita.com/shosho/items/c1561a51bdefea202b16)
 $ vi .env
