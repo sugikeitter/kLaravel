@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\MyUser;
+
 class MyUserController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class MyUserController extends Controller
     public function index()
     {
         $message = 'Hey!';
-        $data = [];
+        $data = MyUser::all();
         return $this->viewMyUser($message, $data);
     }
 
