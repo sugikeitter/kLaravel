@@ -3,9 +3,9 @@
 ###################
 
 ### Docker環境作成
-$ docker run --privileged --name laravel-tutorial -d -p 8000:8000 centos /sbin/init
+$ docker run --privileged --name laravel-myapp -d -p 8000:8000 centos /sbin/init
 
-$ docker exec -it laravel-tutorial /bin/bash
+$ docker exec -it laravel-myapp /bin/bash
 
 
 ### CentOS7にPHP7をyumでインストールする(http://qiita.com/inakadegaebal/items/b57cf10339978d638305)
