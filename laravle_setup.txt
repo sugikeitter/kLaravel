@@ -39,7 +39,7 @@ $ vi ~/.bash_profile
 PATH=$PATH:$HOME/bin:$HOME/.composer/vendor/bin
 ================
 
-$ source .bash_profile
+$ source ~/.bash_profile
 
 # "laravel new" する時に出る "The Zip PHP extension is not installed." エラーを解消する(http://takayukii.me/post/20160406772)
 $ yum install libxslt
