@@ -34,7 +34,7 @@ $ yum install zip unzip git
 
 $ composer global require "laravel/installer"
 
-$ vi .bash_profile
+$ vi ~/.bash_profile
 ================
 PATH=$PATH:$HOME/bin:$HOME/.composer/vendor/bin
 ================
