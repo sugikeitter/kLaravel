@@ -38,7 +38,16 @@ class MyUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newMyUser = array(
+                    'name' => $request->input('name')
+                    ,'mail' => $request->input('mail')
+                    ,'age' => $request->input('age')
+                  );
+        MyUser::create($newMyUser);
+
+        $message = 'SUCCESS: store new data.';
+        $data = MyUser::all();
+        return $this->viewMyUser($message, $data);
     }
 
     /**

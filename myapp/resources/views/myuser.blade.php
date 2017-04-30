@@ -11,7 +11,7 @@
 <body>
   <h1>User</h1>
   <p>{{ $message }}</p>
-  <form method="post" action="/hello">
+  <form method="post" action="/myuser">
     <input type="submit" value="registration">
     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
     <table>
@@ -24,7 +24,7 @@
       </tr>
 @foreach ($data as $val)
       <tr>
-        <td><a href="/hello/{{ $val->id }}">{{ $val->id }}</a></td>
+        <td><a href="/myuser/{{ $val->id }}">{{ $val->id }}</a></td>
         <td>{{ $val->name }}</td>
         <td>{{ $val->mail }}</td>
         <td>{{ $val->age }}</td>
