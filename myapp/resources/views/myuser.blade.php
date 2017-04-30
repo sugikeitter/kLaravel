@@ -24,7 +24,7 @@
       </tr>
 @foreach ($data as $val)
       <tr>
-        <td><a href="/myuser/{{ $val->id }}">{{ $val->id }}</a></td>
+        <td><a href="/myuser/{{ $val->id }}/edit">{{ $val->id }}</a></td>
         <td>{{ $val->name }}</td>
         <td>{{ $val->mail }}</td>
         <td>{{ $val->age }}</td>

@@ -58,9 +58,6 @@ class MyUserController extends Controller
      */
     public function show($id)
     {
-        $message = "SELECTED ID: $id";
-        $selectedUser = MyUser::find($id);
-        return $this->viewMyUserEdit($message, $selectedUser);
     }
 
     /**
@@ -71,7 +68,9 @@ class MyUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $message = "SELECTED ID: $id";
+        $selectedUser = MyUser::find($id);
+        return $this->viewMyUserEdit($message, $selectedUser);
     }
 
     /**
