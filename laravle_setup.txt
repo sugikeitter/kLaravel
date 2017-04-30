@@ -147,3 +147,12 @@ $ vim config/database.php
 # sqliteへの書き込み権限(http://qiita.com/juniskw/items/7f948843d571ca2dd0f4)
 $ chmod 666 database/database.sqlite
 $ chmod 777 database
+
+
+
+### Laravleコンポーネントの作成
+# controllerの作成
+$ php artisan make:controller MyUserController --resource
+
+# modelの作成
+$ php artisan make:model MyUser
