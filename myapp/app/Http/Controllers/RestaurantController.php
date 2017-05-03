@@ -83,12 +83,12 @@ class RestaurantController extends Controller
     {
         $updateData = Restaurant::find($id);
 
-        $updateDat->aname = $request->input('name')
-        $updateDat->kind = $request->input('kind')
-        $updateDat->nearest_station = $request->input('nearest_station')
-        $updateDat->street_address = $request->input('street_address')
-        $updateDat->url = $request->input('url')
-        $updateDat->key_word = $request->input('key_word')
+        $updateData->name = $request->input('name');
+        $updateData->kind = $request->input('kind');
+        $updateData->nearest_station = $request->input('nearest_station');
+        $updateData->street_address = $request->input('street_address');
+        $updateData->url = $request->input('url');
+        $updateData->key_word = $request->input('key_word');
 
         $updateData->save();
         return json_encode(array($updateData));
